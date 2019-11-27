@@ -14,17 +14,12 @@ from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 
 
-os.chdir('/home/agustin/Desktop/Kaggle/Titanic Competition/all')
-
 data = pd.read_csv('train.csv')
 
 #Change the sex values by one and minus one
 data.Sex[data.Sex == "male"] = 1.
 data.Sex[data.Sex == "female"] = -1.
 
-
-
-os.chdir('/home/agustin/Desktop/Kaggle/Titanic Competition/all')
 
 #Set the train and target variables
 y = data.Survived
@@ -148,9 +143,6 @@ results = data_model.predict(X_to_predict)
 #Convert to DataFrame and add the PassengerId 
 output_dict = {'PassengerId': data_to_predict.PassengerId, 'Survived': results.astype(int)} #Convert the survived column to integers
 output_dataframe = pd.DataFrame(output_dict)
-
-#Change folder to current folder
-os.chdir('/home/agustin/Desktop/Kaggle/Titanic Competition/v10')
 
 #Save results as csv file
 output_dataframe.to_csv('predictions_submission.csv', index = False)
